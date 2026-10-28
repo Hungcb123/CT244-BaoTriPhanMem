@@ -34,21 +34,20 @@ demo_sample_project/src/main/java/com/maintenance/demo/
 
 Khi thực hiện **Instant Reverse** trong Visual Paradigm, công cụ sẽ tự động nhận diện và vẽ nên các mối quan hệ:
 
-1. **Quan hệ Kế thừa (Inheritance):**  
-   `Customer`, `Order`, `Product`, `OrderItem` đều kế thừa từ `BaseEntity`.
-2. **Quan hệ Một - Nhiều (One-to-Many / Many-to-One):**  
+1. **Quan hệ Kế thừa (Inheritance):**`Customer`, `Order`, `Product`, `OrderItem` đều kế thừa từ `BaseEntity`.
+2. **Quan hệ Một - Nhiều (One-to-Many / Many-to-One):**
    - Một `Customer` có danh sách nhiều `Order`.
    - Một `Order` có danh sách nhiều `OrderItem`.
    - Mỗi `OrderItem` tham chiếu tới một `Product`.
-3. **Quan hệ Phụ thuộc phân tầng (Dependency Injection):**  
+3. **Quan hệ Phụ thuộc phân tầng (Dependency Injection):**
    - `OrderController` $\rightarrow$ gọi `OrderService`.
    - `OrderService` $\rightarrow$ gọi `OrderRepository`, `ProductRepository`, `CustomerRepository`.
 
 ---
 
 ## 3. Cách thực hiện Reverse nhanh trong Visual Paradigm:
+
 1. Mở **Visual Paradigm**.
 2. Chọn menu **Tools** $\rightarrow$ **Code** $\rightarrow$ **Instant Reverse** $\rightarrow$ **Java...**
-3. Nhấn **Add Source Folder** $\rightarrow$ Chọn đường dẫn:  
-   `d:\Project_CT210H_BaoTriPhanMem\demo_sample_project\src\main\java`
+3. Nhấn **Add Source Folder** $\rightarrow$ Chọn đường dẫn:`d:\Project_CT210H_BaoTriPhanMem\demo_sample_project\src\main\java`
 4. Chọn toàn bộ package $\rightarrow$ Nhấn **Finish**. Biểu đồ sẽ xuất hiện ngay lập tức!

@@ -31,58 +31,58 @@ Mã nguồn dùng chung để thử nghiệm cả 3 công cụ: Thư mục `demo
 
 ---
 
-## 2. CÔNG CỤ 2: INTELLIJ IDEA ULTIMATE (Tích hợp sẵn trong IDE)
-
-### Cách sử dụng (Không cần cài thêm vì tích hợp sẵn trong IDE):
-1. Mở thư mục `demo_sample_project` bằng **IntelliJ IDEA Ultimate** (Dùng tài khoản JetBrains sinh viên).
-2. Trên cây thư mục dự án bên trái (Project Explorer):
-   - Nhấp chuột phải vào package `com.maintenance.demo` (hoặc package `model`).
-   - Chọn **Diagrams** $\rightarrow$ **Show Diagram...** (hoặc phím tắt `Ctrl + Alt + Shift + U`).
-   - Chọn kiểu biểu đồ: **Java Classes**.
-3. Tùy chỉnh hiển thị:
-   - Trên thanh công cụ của biểu đồ, bật các icon: **Show Dependencies** (hiện mũi tên phụ thuộc), **Show Fields**, **Show Methods**.
-   - Bấm icon **Layout** để đổi kiểu sắp xếp.
-
-### Kết quả ghi nhận để đưa vào Báo cáo:
-- **Ảnh chụp cần lấy:** Ảnh chụp màn hình biểu đồ Diagram trực tiếp bên trong cửa sổ IntelliJ IDEA, hiển thị các Class `Order`, `Customer`, `Product` nối với nhau.
-- **Nhận xét thực tế:**
-  + *Ưu điểm:* Nhanh, mượt, không cần cài thêm phần mềm ngoài, nhảy thẳng từ biểu đồ vào dòng code tương ứng khi nhấp đúp chuột.
-  + *Nhược điểm:* Chỉ dừng ở mức xem nhanh (Viewer), khả năng chỉnh sửa kiến trúc để đồng bộ ngược lại code (Round-trip) rất hạn chế; không có tính năng tạo mô hình phân tích độc lập để bàn giao bảo trì như CASE tool; yêu cầu bản quyền Ultimate.
-
----
-
-## 3. CÔNG CỤ 3: STARUML (Kèm Extension Java Reverse)
-*(Hoặc Enterprise Architect nếu nhóm đã tải bản Trial)*
+## 2. CÔNG CỤ 2: STARUML (KÈM EXTENSION JAVA REVERSE)
 
 ### Cách cài đặt & sử dụng StarUML:
-1. Tải StarUML (bản siêu nhẹ ~100MB): `https://staruml.io/`
-2. Cài đặt extension Java:
-   - Mở StarUML $\rightarrow$ Menu **Tools** $\rightarrow$ **Extension Manager**.
-   - Tìm kiếm từ khóa `Java` $\rightarrow$ Nhấn **Install** tại plugin *Java Reverse*.
-3. Thực hiện Reverse:
+1. Mở StarUML (phiên bản Trial Mode).
+2. Cài đặt tiện ích mở rộng Java:
+   - Menu **Tools** $\rightarrow$ **Extension Manager...**
+   - Tìm kiếm từ khóa `Java` $\rightarrow$ Nhấn **Install** tại extension *Java* (hoặc *Java Reverse*). Chờ thông báo Installed thành công.
+3. Thực hiện Reverse Engineering:
    - Menu **Tools** $\rightarrow$ **Java** $\rightarrow$ **Reverse Code...**
-   - Chọn thư mục `demo_sample_project/src/main/java`.
-   - Chọn các file `.java` và bấm **Reverse**.
+   - Chọn thư mục mã nguồn: `D:\Project_CT210H_BaoTriPhanMem\demo_sample_project\src\main\java` (hoặc đường dẫn tương đương trên máy).
+   - Chọn các file `.java` cần đảo ngược $\rightarrow$ Bấm **Reverse**.
+4. Hiển thị lên Diagram:
+   - Nhìn sang cột **Model Explorer** bên phải, mở rộng cây `Model` sẽ thấy các class `OrderController`, `OrderService`, `Customer`, `Order`,...
+   - Mở Diagram `Main` ở giữa $\rightarrow$ Kéo thả các class từ Model Explorer vào trang vẽ.
 
 ### Kết quả ghi nhận để đưa vào Báo cáo:
 - **Ảnh chụp cần lấy:** Ảnh chụp giao diện StarUML hiển thị cây mô hình bên phải và Class Diagram ở khung làm việc chính.
 - **Nhận xét thực tế:**
-  + *Ưu điểm:* Cài đặt siêu nhanh, giao diện hiện đại (Modern UI), nhẹ nhàng, hỗ trợ xuất ảnh vector SVG/PNG sắc nét.
-  + *Nhược điểm:* Extension Java Reverse của StarUML chỉ bắt được các quan hệ cơ bản, chưa nhận diện sâu các Annotation của Spring Boot/JPA; tính năng Round-trip và sinh ERD còn yếu hơn Visual Paradigm.
+  + *Ưu điểm:* Cài đặt siêu nhanh (~100MB), giao diện hiện đại (Modern UI), mượt mà, hỗ trợ xuất ảnh vector SVG/PNG rất sắc nét.
+  + *Nhược điểm:* Extension Java Reverse của StarUML chỉ nhận diện cấu trúc OOP cơ bản, chưa nhận diện sâu các Annotation của Spring Boot/JPA; tính năng Round-trip và sinh ERD còn yếu hơn Visual Paradigm.
+
+---
+
+## 3. CÔNG CỤ 3: ENTERPRISE ARCHITECT (SPARX SYSTEMS)
+
+### Cách cài đặt & sử dụng Enterprise Architect:
+1. Tải bản dùng thử 30 ngày từ trang chủ Sparx Systems: `https://sparxsystems.com/products/ea/trial/`
+2. Tạo mới một EAP/QEAX Project $\rightarrow$ Chọn mô hình mẫu Software Engineering.
+3. Thực hiện Reverse Source Code:
+   - Menu **Develop** (hoặc **Code**) $\rightarrow$ **Source Code** $\rightarrow$ **Import Binary / Source Directory...**
+   - Chọn ngôn ngữ **Java**, trỏ đến thư mục `demo_sample_project/src/main/java`.
+   - Chọn tạo tự động Class Diagram cho từng package.
+
+### Kết quả ghi nhận để đưa vào Báo cáo:
+- **Ảnh chụp cần lấy:** Ảnh chụp màn hình Project Browser và Class Diagram phân tích quan hệ phụ thuộc trong Enterprise Architect.
+- **Nhận xét thực tế:**
+  + *Ưu điểm:* Nền tảng mô hình hóa đồ sộ bậc nhất cho doanh nghiệp lớn, hỗ trợ phân tích mã nguồn quy mô hàng triệu dòng code, quản lý truy vết yêu cầu (Traceability) cực mạnh.
+  + *Nhược điểm:* Dung lượng cài đặt lớn, giao diện phức tạp với hàng trăm menu con, thời gian dùng thử giới hạn 30 ngày, dốc học tập (learning curve) rất cao đối với sinh viên.
 
 ---
 
 ## 4. MA TRẬN ĐỐI SÁNH THỰC TẾ GIỮA 3 CÔNG CỤ (DÙNG ĐỂ CHỌN CÔNG CỤ SỐ 1)
 
-| Tiêu chí khảo sát thực tế | Visual Paradigm | IntelliJ IDEA Diagram | StarUML (Java Ext) |
+| Tiêu chí khảo sát thực tế | Visual Paradigm | Enterprise Architect | StarUML (Java Ext) |
 |:---|:---:|:---:|:---:|
-| **Thời gian cài đặt & dung lượng** | Trung bình (~500MB) | Tích hợp sẵn trong IDE | Rất nhanh (~100MB) |
-| **Độ chính xác khi nhận diện mã Java** | Rất cao (100%) | Rất cao (100%) | Khá (85% - thiếu một số annotation) |
-| **Bố cục tự động (Auto Layout)** | Đẹp mắt, tự phân tầng | Cơ bản, hơi rối khi nhiều class | Khá, dễ kéo thả thủ công |
-| **Khả năng trích xuất ERD từ JPA** | Có (rất mạnh) | Xem được JPA mapping | Không hỗ trợ tự động |
-| **Đồng bộ hai chiều (Round-trip)** | Có (Rất xuất sắc) | Hạn chế (chủ yếu 1 chiều) | Hạn chế |
-| **Sinh tài liệu kỹ thuật bảo trì** | Có (Doc. Composer) | Không (chỉ xuất ảnh) | Hạn chế (chỉ xuất PDF sơ bộ) |
-| **Chi phí bản quyền cho sinh viên** | Miễn phí (Community) | Cần JetBrains Student | Miễn phí đánh giá (Eval) |
+| **Thời gian cài đặt & dung lượng** | Trung bình (~500MB) | Nặng (~400MB + cấu hình) | Rất nhanh (~100MB) |
+| **Độ chính xác khi nhận diện mã Java** | Rất cao (100% - bắt trọn Annotation) | Rất cao (100% - cấp Enterprise) | Khá (85% - thiếu một số annotation) |
+| **Bố cục tự động (Auto Layout)** | Đẹp mắt, tự phân tầng chuẩn 1-Click | Khá thủ công khi gom toàn hệ thống | Thủ công, phải kéo thả từng class |
+| **Khả năng trích xuất ERD từ JPA** | Có (rất mạnh qua JPA mapping) | Có (Data Modeling chuyên nghiệp) | Không hỗ trợ tự động từ code JPA |
+| **Đồng bộ hai chiều (Round-trip)** | Có (Rất xuất sắc) | Có (Mạnh nhưng phức tạp) | Hạn chế (chỉ sinh mã cơ bản) |
+| **Sinh tài liệu kỹ thuật bảo trì** | Có (Doc. Composer linh hoạt) | Có (RTF/HTML template phức tạp) | Hạn chế (chỉ xuất HTML/PDF sơ bộ) |
+| **Chi phí bản quyền cho sinh viên** | Bản Enterprise là Evaluation 30 ngày (có Community dự phòng) | Khóa cứng sau 30 ngày trial, license rất đắt | Trial Mode không khóa ngày nhưng hiện popup nhắc mua |
 
 > **KẾT LUẬN LỰA CHỌN:**  
 > Dựa trên kết quả thực nghiệm trên cùng mã nguồn, **Visual Paradigm** vượt trội hoàn toàn về các tính năng chuyên sâu cho môn Bảo trì phần mềm (đặc biệt là Round-trip Engineering, trích xuất ERD và xuất tài liệu kỹ thuật). Do đó, nhóm lựa chọn **Visual Paradigm** làm công cụ chính để triển khai sâu ở Phần B.

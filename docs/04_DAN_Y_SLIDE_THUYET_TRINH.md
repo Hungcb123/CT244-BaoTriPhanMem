@@ -12,7 +12,7 @@
 | 1 | Trang bìa & Giới thiệu đề tài | 1 phút | Nhóm trưởng |
 | 2 | Đặt vấn đề: Thách thức bảo trì hệ thống Legacy | 1 phút | Nhóm trưởng |
 | 3 | Khái niệm & Vai trò của Reverse Engineering trong Bảo trì | 1.5 phút | Thành viên 2 |
-| 4 | Khảo sát 3 công cụ: Visual Paradigm, EA, IntelliJ | 1.5 phút | Thành viên 2 |
+| 4 | Khảo sát 3 công cụ: Visual Paradigm, EA, StarUML | 1.5 phút | Thành viên 2 |
 | 5 | Ma trận đánh giá so sánh & Lý do chọn Visual Paradigm | 1 phút | Thành viên 2 |
 | 6 | Các tính năng nổi bật của Visual Paradigm | 1.5 phút | Nhóm trưởng |
 | 7 | Giới thiệu hệ thống thực nghiệm: Spring Boot Backend | 1 phút | Thành viên 3 |
@@ -58,16 +58,20 @@
 ---
 
 ### SLIDE 4: KHẢO SÁT 3 CÔNG CỤ REVERSE ENGINEERING TIÊU BIỂU
-- **Nội dung hiển thị (3 cột so sánh trực quan kèm logo):**
-  1. **Visual Paradigm:** Chuyên gia CASE tool, mạnh mẽ về UML, Instant Reverse đa ngôn ngữ, hỗ trợ giáo dục và doanh nghiệp.
-  2. **Enterprise Architect (Sparx):** Nền tảng mô hình hóa đồ sộ cấp Enterprise, khả năng mở rộng cao nhưng giao diện phức tạp và chỉ có trial 30 ngày.
-  3. **IntelliJ IDEA Ultimate Diagram Tool:** Nhanh gọn tích hợp trực tiếp trong IDE của lập trình viên, nhưng chỉ dừng ở mức xem sơ bộ, thiếu công cụ Round-trip và xuất tài liệu toàn diện.
+- **Nội dung hiển thị (3 cột so sánh khách quan ưu & nhược điểm):**
+  1. **Visual Paradigm:** Chuyên gia CASE Tool chuẩn giáo trình bảo trì, tự động phân tầng 1-Click, Round-trip và trích xuất JPA sang ERD xuất sắc. *(Nhược điểm: Rất nặng nề, chạy Java Swing ngốn RAM, giao diện rườm rà)*.
+  2. **Enterprise Architect (Sparx):** "Ông vua" mô hình hóa cấp tập đoàn, vô địch về quản lý truy vết (Traceability) và quy mô triệu dòng code. *(Nhược điểm: Giao diện cực khó học, chia vụn diagram, khóa cứng file sau 30 ngày trial)*.
+  3. **StarUML (kèm Java Extension):** Vô địch về tốc độ và trải nghiệm (siêu nhẹ ~100MB, giao diện phẳng hiện đại, trial không khóa file). *(Nhược điểm: Tự động hóa thấp, phải kéo thả thủ công 100%, không trích xuất JPA sang ERD)*.
 
 ---
 
-### SLIDE 5: MA TRẬN ĐÁNH GIÁ VÀ ĐỀ XUẤT VISUAL PARADIGM
-- **Nội dung hiển thị:** Bảng so sánh 6 tiêu chí (Reverse Java, Chuẩn UML, Trích xuất ERD, Round-trip, Xuất báo cáo, Bản quyền/Độ dễ tiếp cận).
-- **Kết luận đề xuất:** Nhóm chọn **Visual Paradigm** vì đạt điểm tối ưu giữa tính năng chuyên sâu chuẩn giáo trình bảo trì, tính năng đồng bộ 2 chiều (Round-trip) và có phiên bản Community miễn phí.
+### SLIDE 5: BIỂU ĐỒ SPIDER CHART ĐÁNH GIÁ ĐA CHIỀU & LUẬN CHỨNG
+- **Nội dung hiển thị:** 
+  + Chiếu hình ảnh **Biểu đồ Radar (Spider Chart) 6 trục** khách quan: Mỗi công cụ có một thế mạnh riêng (StarUML dẫn đầu về Hiệu năng & UI; EA dẫn đầu về Enterprise; Visual Paradigm dẫn đầu về Tự động hóa Đảo ngược & Round-trip).
+  + Bảng ma trận trọng số: Visual Paradigm (3.75) $\gt$ Enterprise Architect (3.40) $\gt$ StarUML (3.10).
+- **Kết luận đề xuất (Khách quan, không thiên vị):** 
+  * Không có công cụ nào hoàn hảo toàn diện. 
+  * Nhóm chọn **Visual Paradigm** vì đây là **công cụ phù hợp nhất với bài toán cụ thể của môn Bảo trì phần mềm**: Tiết kiệm tối đa thời gian vẽ lại kiến trúc Controller-Service-Repo và đồng bộ hai chiều mã nguồn Java Spring Boot.
 
 ---
 

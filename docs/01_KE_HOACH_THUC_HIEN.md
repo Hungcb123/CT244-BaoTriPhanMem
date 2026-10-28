@@ -1,7 +1,7 @@
 # KẾ HOẠCH THỰC HIỆN BÀI TẬP NHÓM SỐ 1
 ## MÔN HỌC: BẢO TRÌ PHẦN MỀM (CT210H)
 **Chủ đề:** Tìm hiểu và ứng dụng công cụ Kỹ thuật đảo ngược (Reverse Engineering) trong bảo trì hệ thống Java Spring Boot  
-**Công cụ lựa chọn chính:** Visual Paradigm (So sánh cùng Enterprise Architect và IntelliJ IDEA Diagram)  
+**Công cụ lựa chọn chính:** Visual Paradigm (So sánh cùng Enterprise Architect và StarUML)  
 
 ---
 
@@ -10,7 +10,7 @@
 | STT | Họ và tên | MSSV | Vai trò chính | Nhiệm vụ đảm trách | Tỷ lệ đóng góp |
 |:---:|:---|:---:|:---|:---|:---:|
 | 1 | *[Trưởng nhóm / Bạn]* | *[MSSV 1]* | Nhóm trưởng & Kỹ thuật Backend | Quản lý tiến độ, cài đặt & thử nghiệm Visual Paradigm trên dự án Spring Boot, thiết kế kịch bản demo chính, thực hiện module AI Impact Analysis. | 100% |
-| 2 | *[Thành viên 2]* | *[MSSV 2]* | Nghiên cứu công cụ & Viết báo cáo | Nghiên cứu Enterprise Architect & IntelliJ IDEA Diagram, lập bảng so sánh 3 công cụ, phụ trách mục Lý thuyết bảo trì và Reverse Engineering trong Word. | 100% |
+| 2 | *[Thành viên 2]* | *[MSSV 2]* | Nghiên cứu công cụ & Viết báo cáo | Nghiên cứu Enterprise Architect & StarUML (kèm Java Extension), lập bảng so sánh 3 công cụ, phụ trách mục Lý thuyết bảo trì và Reverse Engineering trong Word. | 100% |
 | 3 | *[Thành viên 3]* | *[MSSV 3]* | Hỗ trợ kịch bản & Biên soạn tài liệu | Thu thập dữ liệu kịch bản demo (chụp màn hình, ghi lại các bước thao tác), định dạng file Word chuẩn Times New Roman 13, A4 và thiết kế Slide PowerPoint thuyết trình. | 100% |
 | 4 | *[Thành viên 4]* *(nếu có)* | *[MSSV 4]* | Thử nghiệm & Thuyết trình | Thử nghiệm các ca kiểm thử Round-trip engineering, tổng hợp tài liệu tham khảo, đồng thuyết trình phần demo trước lớp. | 100% |
 
@@ -29,7 +29,7 @@ gantt
     Lập kế hoạch thực hiện & phân công nhiệm vụ       :active, des2, after des1, 2d
     section Giai đoạn 2: Nghiên cứu & So sánh
     Khảo sát lý thuyết Reverse Engineering            :des3, after des2, 3d
-    Cài đặt & dùng thử 3 công cụ (VP, EA, IntelliJ)   :des4, after des2, 5d
+    Cài đặt & dùng thử 3 công cụ (VP, EA, StarUML)    :des4, after des2, 5d
     Tổng hợp ma trận đánh giá & chọn Visual Paradigm  :des5, after des4, 2d
     section Giai đoạn 3: Thực nghiệm & Kịch bản
     Chuẩn bị codebase Java Spring Boot mẫu (PetClinic):des6, after des5, 2d
@@ -47,7 +47,7 @@ gantt
 - **Mục tiêu:** Nắm vững cơ sở lý thuyết môn Bảo trì phần mềm về Kỹ thuật đảo ngược; cài đặt thành công 3 công cụ trên máy của các thành viên.
 - **Sản phẩm bàn giao:** 
   + Bản nháp Mục 1 (Cơ sở lý thuyết Reverse Engineering trong Bảo trì phần mềm).
-  + Báo cáo ghi nhận bước đầu khi dùng thử Visual Paradigm Community Edition, Enterprise Architect (Trial), và IntelliJ IDEA Diagram.
+  + Báo cáo ghi nhận bước đầu khi dùng thử Visual Paradigm Community Edition, Enterprise Architect (Trial), và StarUML (Java Extension).
 
 #### Tuần 2: Đánh giá so sánh 3 công cụ & Chuẩn bị môi trường thực nghiệm
 - **Mục tiêu:** Xây dựng ma trận so sánh đa tiêu chí, bảo vệ lý do chọn Visual Paradigm; chuẩn bị dự án mã nguồn mở Java Spring Boot.

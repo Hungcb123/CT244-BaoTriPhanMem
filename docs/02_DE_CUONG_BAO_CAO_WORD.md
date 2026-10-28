@@ -59,7 +59,7 @@
   - 2.1. Giới thiệu 3 công cụ được khảo sát
     - 2.1.1. Visual Paradigm
     - 2.1.2. Enterprise Architect (Sparx Systems)
-    - 2.1.3. Công cụ phân tích lược đồ tích hợp trong IntelliJ IDEA Ultimate
+    - 2.1.3. StarUML (kèm tiện ích mở rộng Java Reverse)
   - 2.2. Bảng ma trận so sánh và đánh giá đa tiêu chí
   - 2.3. Đề xuất lựa chọn công cụ tối ưu cho đề tài: Lý do chọn Visual Paradigm
 - **CHƯƠNG 3: TÌM HIỂU CHUYÊN SÂU CÁC TÍNH NĂNG CỦA CÔNG CỤ VISUAL PARADIGM**
@@ -117,6 +117,8 @@ Do đó, một công cụ Reverse Engineering chuyên dụng là cứu cánh b�
 
 ## CHƯƠNG 2: KHẢO SÁT VÀ ĐÁNH GIÁ CÁC CÔNG CỤ REVERSE ENGINEERING PHỔ BIẾN
 
+*(Chi tiết cơ sở lý thuyết, phân tích 6 Factors chuyên sâu và cẩm nang bảo vệ phản biện xem tại: docs/05_DANH_GIA_VA_LUA_CHON_CONG_CU.md)*
+
 ### 2.1. Giới thiệu 3 công cụ được khảo sát
 
 #### 2.1.1. Visual Paradigm
@@ -131,24 +133,24 @@ Do đó, một công cụ Reverse Engineering chuyên dụng là cứu cánh b�
 - **Khả năng Reverse:** Hỗ trợ kỹ thuật đảo ngược rất nhiều ngôn ngữ, bao gồm Java. Khả năng phân tích sâu cấu trúc thư viện và tích hợp mã nguồn lớn.
 - **Phiên bản:** Phần mềm thương mại đóng gói, thời gian dùng thử (Trial) giới hạn trong 30 ngày, giao diện tương đối phức tạp đối với sinh viên và dự án quy mô vừa.
 
-#### 2.1.3. IntelliJ IDEA Ultimate Diagram Tool
-- **Nhà phát triển:** JetBrains.
-- **Mục đích sử dụng:** Tính năng tích hợp sẵn ngay trong môi trường phát triển (IDE) chuyên nghiệp dành cho lập trình viên Java Spring Boot.
-- **Khả năng Reverse:** Cho phép click chuột phải vào package để sinh nhanh Class Diagram, Dependency Matrix, Spring Bean Diagram, và JPA Persistence Diagram.
-- **Hạn chế:** Phụ thuộc vào bản quyền IntelliJ IDEA Ultimate (cần tài khoản sinh viên JetBrains), không chuyên sâu về quản lý mô hình UML chuẩn và thiếu các tính năng sinh tài liệu kỹ thuật toàn diện dạng Word/PDF chuyên nghiệp như các công cụ CASE Tool độc lập.
+#### 2.1.3. StarUML (kèm tiện ích mở rộng Java Reverse)
+- **Nhà phát triển:** MKLabs Co., Ltd.
+- **Mục đích sử dụng:** Công cụ mô hình hóa phần mềm tinh gọn, hiện đại hỗ trợ chuẩn UML 2.x, SysML và Data Modeling (ERD), phát triển trên nền tảng Electron đa nền tảng (Windows, macOS, Linux).
+- **Khả năng Reverse:** Hỗ trợ kỹ thuật đảo ngược mã nguồn Java thông qua tiện ích mở rộng chính thức (*Java Extension / Java Reverse*) được tích hợp sẵn trong *Extension Manager*. Cho phép người dùng duyệt thư mục mã nguồn `.java` để phân tích cấu trúc class, interface, method, attribute và tự động trích xuất vào cây mô hình Model Explorer để đưa lên Class Diagram.
+- **Hạn chế:** Tiện ích Java Reverse của StarUML chủ yếu nhận diện các cấu trúc hướng đối tượng thuần túy, chưa phân tích chuyên sâu các Annotation đặc thù của Spring Boot (`@Autowired`, `@RestController`) và không tự động ánh xạ JPA sang sơ đồ quan hệ thực thể ERD; tính năng đồng bộ hai chiều (Round-trip) chỉ ở mức cơ bản; không có công cụ sinh báo cáo kỹ thuật toàn diện dạng Doc. Composer như Visual Paradigm.
 
 ### 2.2. Bảng ma trận so sánh và đánh giá đa tiêu chí
 
 Nhóm xây dựng thang điểm đánh giá từ 1 đến 5 sao ($\bigstar$) dựa trên 6 tiêu chí kỹ thuật phục vụ môn học Bảo trì phần mềm:
 
-| Tiêu chí đánh giá | Visual Paradigm | Enterprise Architect | IntelliJ IDEA Ultimate |
+| Tiêu chí đánh giá | Visual Paradigm | Enterprise Architect | StarUML (Java Ext) |
 |:---|:---:|:---:|:---:|
-| **1. Khả năng Reverse Engineering mã Java** | $\bigstar\bigstar\bigstar\bigstar\bigstar$<br>*(Đảo ngược rất chuẩn từ package, class, method, annotation)* | $\bigstar\bigstar\bigstar\bigstar\bigstar$<br>*(Mạnh mẽ, xử lý được dự án enterprise khổng lồ)* | $\bigstar\bigstar\bigstar\bigstar$<br>*(Nhanh, tiện lợi trực tiếp trong IDE)* |
-| **2. Hỗ trợ chuẩn UML & Trực quan hóa** | $\bigstar\bigstar\bigstar\bigstar\bigstar$<br>*(Giao diện trực quan, layout tự động đẹp mắt, chuẩn OMG UML)* | $\bigstar\bigstar\bigstar\bigstar$<br>*(Giao diện nhiều tính năng nhưng phức tạp, dốc học tập cao)* | $\bigstar\bigstar\bigstar$<br>*(Trực quan cơ bản, tùy biến layout biểu đồ còn hạn chế)* |
-| **3. Trích xuất mô hình dữ liệu (ERD từ JPA)** | $\bigstar\bigstar\bigstar\bigstar\bigstar$<br>*(Trích xuất ERD trực tiếp từ Entity Java hoặc DB connection)* | $\bigstar\bigstar\bigstar\bigstar$<br>*(Có hỗ trợ Data Modeling chuyên nghiệp)* | $\bigstar\bigstar\bigstar\bigstar$<br>*(Xem được JPA Relationship trong tool window)* |
-| **4. Tính năng Round-trip Engineering** | $\bigstar\bigstar\bigstar\bigstar\bigstar$<br>*(Đồng bộ 2 chiều Model $\leftrightarrow$ Code cực tốt)* | $\bigstar\bigstar\bigstar\bigstar$<br>*(Hỗ trợ code synchronization mạnh)* | $\bigstar\bigstar$<br>*(Chủ yếu một chiều từ code ra diagram)* |
-| **5. Khả năng tự động xuất báo cáo (Doc. Generator)** | $\bigstar\bigstar\bigstar\bigstar\bigstar$<br>*(Công cụ Doc. Composer xuất tài liệu HTML/Word/PDF mẫu chuẩn)* | $\bigstar\bigstar\bigstar\bigstar$<br>*(Xuất RTF/HTML tốt nhưng template cấu hình phức tạp)* | $\bigstar\bigstar$<br>*(Chỉ xuất ra tệp ảnh PNG/SVG/UML)* |
-| **6. Khả năng tiếp cận & Chi phí (Bản quyền)** | $\bigstar\bigstar\bigstar\bigstar\bigstar$<br>*(Có bản Community miễn phí, dễ cài đặt trên Windows/Mac)* | $\bigstar\bigstar$<br>*(Chỉ có 30 ngày trial, cấu hình cài đặt nặng)* | $\bigstar\bigstar\bigstar$<br>*(Bắt buộc tài khoản JetBrains Education hoặc mua bản quyền)* |
+| **1. Khả năng Reverse Engineering mã Java** | $\bigstar\bigstar\bigstar\bigstar\bigstar$<br>*(Đảo ngược rất chuẩn từ package, class, method, annotation)* | $\bigstar\bigstar\bigstar\bigstar\bigstar$<br>*(Mạnh mẽ, xử lý được dự án enterprise khổng lồ)* | $\bigstar\bigstar\bigstar\bigstar$<br>*(Đảo ngược tốt class, method; chưa tối ưu sâu annotation Spring Boot)* |
+| **2. Hỗ trợ chuẩn UML & Trực quan hóa** | $\bigstar\bigstar\bigstar\bigstar\bigstar$<br>*(Giao diện trực quan, layout tự động phân tầng 1-Click, chuẩn OMG UML)* | $\bigstar\bigstar\bigstar$<br>*(Giao diện đồ sộ, chia vụn diagram theo package, gom sơ đồ toàn hệ thống khá thủ công)* | $\bigstar\bigstar\bigstar$<br>*(Giao diện hiện đại phẳng, nhưng phải kéo thả thủ công từng class lên sơ đồ)* |
+| **3. Trích xuất mô hình dữ liệu (ERD từ JPA)** | $\bigstar\bigstar\bigstar\bigstar\bigstar$<br>*(Trích xuất ERD trực tiếp từ Entity Java hoặc DB connection)* | $\bigstar\bigstar\bigstar\bigstar$<br>*(Có hỗ trợ Data Modeling chuyên nghiệp)* | $\bigstar\bigstar$<br>*(Có vẽ ERD thủ công nhưng không tự động trích xuất từ JPA Entity)* |
+| **4. Tính năng Round-trip Engineering** | $\bigstar\bigstar\bigstar\bigstar\bigstar$<br>*(Đồng bộ 2 chiều Model $\leftrightarrow$ Code cực tốt)* | $\bigstar\bigstar\bigstar\bigstar$<br>*(Hỗ trợ code synchronization mạnh)* | $\bigstar\bigstar\bigstar$<br>*(Hỗ trợ sinh mã cơ bản, đồng bộ 2 chiều còn hạn chế)* |
+| **5. Khả năng tự động xuất báo cáo (Doc. Generator)** | $\bigstar\bigstar\bigstar\bigstar\bigstar$<br>*(Công cụ Doc. Composer xuất tài liệu HTML/Word/PDF mẫu chuẩn)* | $\bigstar\bigstar\bigstar\bigstar$<br>*(Xuất RTF/HTML tốt nhưng template cấu hình phức tạp)* | $\bigstar\bigstar\bigstar$<br>*(Hỗ trợ xuất HTML/PDF sơ bộ, thiếu công cụ soạn mẫu tài liệu linh hoạt)* |
+| **6. Khả năng tiếp cận & Chi phí (Bản quyền)** | $\bigstar\bigstar\bigstar\text{\textonehalf}$<br>*(Bản Enterprise là Evaluation 30 ngày; có bản Community miễn phí cơ bản làm dự phòng)* | $\bigstar\bigstar$<br>*(Chỉ có 30 ngày trial, sau đó khóa file, giá license rất đắt)* | $\bigstar\bigstar\bigstar\text{\textonehalf}$<br>*(Cài đặt siêu nhanh ~100MB, Trial Mode không khóa ngày nhưng hiện popup nhắc mua)* |
 
 ### 2.3. Đề xuất lựa chọn công cụ tối ưu cho đề tài
 Từ bảng phân tích ma trận trên, nhóm quyết định lựa chọn **Visual Paradigm** làm công cụ chính để đi sâu nghiên cứu và xây dựng chuỗi kịch bản thực nghiệm, vì các lý do cốt lõi sau:

@@ -15,6 +15,7 @@ Dự án được cấu trúc bài bản phục vụ đầy đủ các yêu cầ
 - 📄 **[docs/02_DE_CUONG_BAO_CAO_WORD.md](file:///d:/Project_CT210H_BaoTriPhanMem/docs/02_DE_CUONG_BAO_CAO_WORD.md)**: Khung nội dung chi tiết của bản Báo cáo tổng kết file Word (chuẩn Font Times New Roman 13, A4, bao gồm trang bìa, mục lục, lý thuyết, so sánh 3 công cụ, đánh giá công cụ đề xuất và kịch bản minh họa).
 - 📄 **[docs/03_KICH_BAN_DEMO_CHI_TIET.md](file:///d:/Project_CT210H_BaoTriPhanMem/docs/03_KICH_BAN_DEMO_CHI_TIET.md)**: Hướng dẫn thực hành từng bước (Step-by-step demo) trên Visual Paradigm với mã nguồn Spring Boot, kèm kịch bản AI-Augmented Reverse Engineering độc đáo.
 - 📄 **[docs/04_DAN_Y_SLIDE_THUYET_TRINH.md](file:///d:/Project_CT210H_BaoTriPhanMem/docs/04_DAN_Y_SLIDE_THUYET_TRINH.md)**: Dàn ý slide PowerPoint thuyết trình trước lớp (12 - 15 slides), kèm gợi ý phân chia người nói và speaker notes.
+- 📄 **[docs/05_DANH_GIA_VA_LUA_CHON_CONG_CU.md](file:///d:/Project_CT210H_BaoTriPhanMem/docs/05_DANH_GIA_VA_LUA_CHON_CONG_CU.md)**: Báo cáo phân tích, đánh giá đối sánh đa tiêu chí có trọng số giữa 3 công cụ (Visual Paradigm, EA, StarUML) và cẩm nang kịch bản trả lời phản biện (Q&A Defense Guide).
 - 📁 **[demo_sample_project/README.md](file:///d:/Project_CT210H_BaoTriPhanMem/demo_sample_project/README.md)**: Hướng dẫn chuẩn bị mã nguồn Java Spring Boot mẫu (Spring PetClinic hoặc Mini E-Commerce API) làm đối tượng demo.
 
 ---
