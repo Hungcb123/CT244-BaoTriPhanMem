@@ -65,13 +65,13 @@
 - **CHƯƠNG 3: TÌM HIỂU CHUYÊN SÂU CÁC TÍNH NĂNG CỦA CÔNG CỤ VISUAL PARADIGM**
   - 3.1. Tổng quan kiến trúc và giao diện làm việc của Visual Paradigm
   - 3.2. Tính năng Instant Reverse Java Source Code sang Class Diagram
-  - 3.3. Tính năng trích xuất Entity-Relationship Diagram (ERD) từ JPA/Hibernate Entities
+  - 3.3. Khoanh vùng quan hệ lớp phục vụ bảo trì
   - 3.4. Tính năng Round-trip Engineering (Đồng bộ hai chiều giữa Model và Code)
   - 3.5. Tính năng xuất tài liệu báo cáo kỹ thuật tự động (Doc. Composer)
 - **CHƯƠNG 4: XÂY DỰNG VÀ THỰC HIỆN CHUỖI KỊCH BẢN THỰC NGHIỆM MINH HỌA**
-  - 4.1. Giới thiệu hệ thống thực nghiệm: Ứng dụng Backend Java Spring Boot (Spring PetClinic / E-Commerce API)
+  - 4.1. Giới thiệu hệ thống thực nghiệm: Ứng dụng Backend Java Spring Boot (mã mẫu quản lý đơn hàng)
   - 4.2. Kịch bản 1: Đảo ngược cấu trúc Controller - Service - Repository sang Class Diagram phân tầng
-  - 4.3. Kịch bản 2: Đảo ngược các thực thể JPA thành sơ đồ cơ sở dữ liệu ERD
+  - 4.3. Kịch bản 2: Phân tích Class Diagram của package model
   - 4.4. Kịch bản 3: Thực hiện Round-trip Engineering khi thêm thuộc tính nghiệp vụ mới
   - 4.5. Kịch bản 4 (Mở rộng chuyên sâu): Kết hợp AI trong phân tích tác động thay đổi (AI-Augmented Change Impact Analysis)
 - **CHƯƠNG 5: KẾT LUẬN VÀ HƯỚNG PHÁT TRIỂN**
@@ -95,7 +95,7 @@ Kỹ thuật đảo ngược **không làm thay đổi chức năng của phần
 ### 1.2. Phân biệt Reverse Engineering với Decompiler và Forward Engineering
 Nhóm làm rõ ranh giới kỹ thuật để trả lời chính xác câu hỏi bản chất của môn học:
 - **Forward Engineering (Kỹ thuật chuyển tiếp):** Là quy trình truyền thống đi từ mức trừu tượng cao xuống mức chi tiết thấp (từ Yêu cầu $\rightarrow$ Thiết kế kiến trúc/UML $\rightarrow$ Sinh mã nguồn $\rightarrow$ Kiểm thử).
-- **Reverse Engineering (Kỹ thuật đảo ngược):** Đi ngược chiều với Forward Engineering. Bắt đầu từ mã nguồn đã có (Source Code) hoặc tệp thực thi để trích xuất ngược lại mô hình kiến trúc, biểu đồ lớp (Class Diagram), biểu đồ tuần tự (Sequence Diagram), hoặc mô hình dữ liệu (ERD).
+- **Reverse Engineering (Kỹ thuật đảo ngược):** Đi ngược chiều với Forward Engineering. Bắt đầu từ mã nguồn đã có (Source Code) hoặc tệp thực thi để trích xuất ngược lại mô hình kiến trúc, biểu đồ lớp (Class Diagram), biểu đồ tuần tự (Sequence Diagram).
 - **Decompiler (Công cụ dịch ngược):** Thường chỉ tập trung vào việc biến đổi từ mã máy hoặc bytecode nhị phân (`.class`, `.jar`, `.exe`) trở về dạng mã nguồn lập trình cấp cao tương đương (như Java, C#) ở cùng mức trừu tượng của code, không có chức năng trừu tượng hóa lên mức mô hình kiến trúc UML như Reverse Engineering.
 
 ### 1.3. Vai trò của Reverse Engineering trong 4 loại hình bảo trì phần mềm
@@ -110,7 +110,7 @@ Trong vòng đời phần mềm, chi phí bảo trì chiếm từ 60% đến 80%
 Các dự án Java Spring Boot trong doanh nghiệp thường có kích thước rất lớn với hàng trăm Class, sử dụng cơ chế Dependency Injection (IoC Container) và các Annotation phức tạp (`@RestController`, `@Service`, `@Repository`, `@Entity`, `@Transactional`). 
 Khi kỹ sư mới tiếp nhận một hệ thống "Legacy" (đã phát triển nhiều năm, tài liệu Word/Confluence không được cập nhật):
 - Không thể đọc chay từng file `.java` để hình dung bức tranh tổng thể.
-- Mối quan hệ giữa các bảng trong cơ sở dữ liệu thông qua JPA Hibernate (`@OneToMany`, `@ManyToMany`) rất dễ gây ra lỗi hiệu năng N+1 queries nếu không có sơ đồ ERD trực quan.
+- Cần đối chiếu các quan hệ và kiểu dữ liệu trong mô hình với mã nguồn; sơ đồ tĩnh không đủ chứng minh hành vi truy vấn hay lỗi hiệu năng runtime.
 Do đó, một công cụ Reverse Engineering chuyên dụng là cứu cánh bắt buộc.
 
 ---
@@ -124,8 +124,8 @@ Do đó, một công cụ Reverse Engineering chuyên dụng là cứu cánh b�
 #### 2.1.1. Visual Paradigm
 - **Nhà phát triển:** Visual Paradigm International.
 - **Mục đích sử dụng:** Bộ công cụ thiết kế UML, SysML, BPMN, Enterprise Architecture và hỗ trợ quy trình công nghệ phần mềm hoàn chỉnh.
-- **Khả năng Reverse:** Cung cấp tính năng *Instant Reverse* hỗ trợ trực tiếp ngôn ngữ Java (cả Source Code `.java` và Bytecode `.class`/`.jar`), C++, C#, PHP, Python sang Class Diagram, Sequence Diagram, và trích xuất ERD từ Hibernate/JPA.
-- **Phiên bản:** Có Community Edition (phiên bản miễn phí hỗ trợ tốt cho học tập/nghiên cứu) và bản thương mại chuyên sâu.
+- **Khả năng Reverse:** Hỗ trợ reverse Java thành mô hình lớp; khả năng đồng bộ cần thử với đúng edition và chức năng.
+- **Phiên bản thực nghiệm:** Enterprise Evaluation; Java round-trip có từ Standard, không lấy Community làm phương án thay thế tính năng này.
 
 #### 2.1.2. Enterprise Architect (Sparx Systems)
 - **Nhà phát triển:** Sparx Systems (Úc).
@@ -135,26 +135,17 @@ Do đó, một công cụ Reverse Engineering chuyên dụng là cứu cánh b�
 
 #### 2.1.3. StarUML (kèm tiện ích mở rộng Java Reverse)
 - **Nhà phát triển:** MKLabs Co., Ltd.
-- **Mục đích sử dụng:** Công cụ mô hình hóa phần mềm tinh gọn, hiện đại hỗ trợ chuẩn UML 2.x, SysML và Data Modeling (ERD), phát triển trên nền tảng Electron đa nền tảng (Windows, macOS, Linux).
+- **Mục đích sử dụng:** Công cụ mô hình hóa phần mềm tinh gọn, hiện đại hỗ trợ chuẩn UML 2.x và SysML, phát triển trên nền tảng Electron đa nền tảng (Windows, macOS, Linux).
 - **Khả năng Reverse:** Hỗ trợ kỹ thuật đảo ngược mã nguồn Java thông qua tiện ích mở rộng chính thức (*Java Extension / Java Reverse*) được tích hợp sẵn trong *Extension Manager*. Cho phép người dùng duyệt thư mục mã nguồn `.java` để phân tích cấu trúc class, interface, method, attribute và tự động trích xuất vào cây mô hình Model Explorer để đưa lên Class Diagram.
-- **Hạn chế:** Tiện ích Java Reverse của StarUML chủ yếu nhận diện các cấu trúc hướng đối tượng thuần túy, chưa phân tích chuyên sâu các Annotation đặc thù của Spring Boot (`@Autowired`, `@RestController`) và không tự động ánh xạ JPA sang sơ đồ quan hệ thực thể ERD; tính năng đồng bộ hai chiều (Round-trip) chỉ ở mức cơ bản; không có công cụ sinh báo cáo kỹ thuật toàn diện dạng Doc. Composer như Visual Paradigm.
+- **Hạn chế:** Cần kiểm chứng khả năng nhận diện ngữ nghĩa framework và merge code; không suy ra từ việc có reverse và generate.
 
-### 2.2. Bảng ma trận so sánh và đánh giá đa tiêu chí
+### 2.2. Bảng so sánh theo phạm vi thực nghiệm
 
-Nhóm xây dựng thang điểm đánh giá từ 1 đến 5 sao ($\bigstar$) dựa trên 6 tiêu chí kỹ thuật phục vụ môn học Bảo trì phần mềm:
-
-| Tiêu chí đánh giá | Visual Paradigm | Enterprise Architect | StarUML (Java Ext) |
-|:---|:---:|:---:|:---:|
-| **1. Khả năng Reverse Engineering mã Java** | $\bigstar\bigstar\bigstar\bigstar\bigstar$<br>*(Đảo ngược rất chuẩn từ package, class, method, annotation)* | $\bigstar\bigstar\bigstar\bigstar\bigstar$<br>*(Mạnh mẽ, xử lý được dự án enterprise khổng lồ)* | $\bigstar\bigstar\bigstar\bigstar$<br>*(Đảo ngược tốt class, method; chưa tối ưu sâu annotation Spring Boot)* |
-| **2. Hỗ trợ chuẩn UML & Trực quan hóa** | $\bigstar\bigstar\bigstar\bigstar\bigstar$<br>*(Giao diện trực quan, layout tự động phân tầng 1-Click, chuẩn OMG UML)* | $\bigstar\bigstar\bigstar$<br>*(Giao diện đồ sộ, chia vụn diagram theo package, gom sơ đồ toàn hệ thống khá thủ công)* | $\bigstar\bigstar\bigstar$<br>*(Giao diện hiện đại phẳng, nhưng phải kéo thả thủ công từng class lên sơ đồ)* |
-| **3. Trích xuất mô hình dữ liệu (ERD từ JPA)** | $\bigstar\bigstar\bigstar\bigstar\bigstar$<br>*(Trích xuất ERD trực tiếp từ Entity Java hoặc DB connection)* | $\bigstar\bigstar\bigstar\bigstar$<br>*(Có hỗ trợ Data Modeling chuyên nghiệp)* | $\bigstar\bigstar$<br>*(Có vẽ ERD thủ công nhưng không tự động trích xuất từ JPA Entity)* |
-| **4. Tính năng Round-trip Engineering** | $\bigstar\bigstar\bigstar\bigstar\bigstar$<br>*(Đồng bộ 2 chiều Model $\leftrightarrow$ Code cực tốt)* | $\bigstar\bigstar\bigstar\bigstar$<br>*(Hỗ trợ code synchronization mạnh)* | $\bigstar\bigstar\bigstar$<br>*(Hỗ trợ sinh mã cơ bản, đồng bộ 2 chiều còn hạn chế)* |
-| **5. Khả năng tự động xuất báo cáo (Doc. Generator)** | $\bigstar\bigstar\bigstar\bigstar\bigstar$<br>*(Công cụ Doc. Composer xuất tài liệu HTML/Word/PDF mẫu chuẩn)* | $\bigstar\bigstar\bigstar\bigstar$<br>*(Xuất RTF/HTML tốt nhưng template cấu hình phức tạp)* | $\bigstar\bigstar\bigstar$<br>*(Hỗ trợ xuất HTML/PDF sơ bộ, thiếu công cụ soạn mẫu tài liệu linh hoạt)* |
-| **6. Khả năng tiếp cận & Chi phí (Bản quyền)** | $\bigstar\bigstar\bigstar\text{\textonehalf}$<br>*(Bản Enterprise là Evaluation 30 ngày; có bản Community miễn phí cơ bản làm dự phòng)* | $\bigstar\bigstar$<br>*(Chỉ có 30 ngày trial, sau đó khóa file, giá license rất đắt)* | $\bigstar\bigstar\bigstar\text{\textonehalf}$<br>*(Cài đặt siêu nhanh ~100MB, Trial Mode không khóa ngày nhưng hiện popup nhắc mua)* |
+Dùng ma trận định tính trong [tài liệu đánh giá](05_DANH_GIA_VA_LUA_CHON_CONG_CU.md). Tiêu chí gồm nhận diện lớp/quan hệ, tự động hóa tạo sơ đồ, dễ sử dụng, round-trip, hiệu năng và khả năng tiếp cận. Chưa chốt điểm tổng khi chưa đủ bằng chứng; không dùng điểm gộp cũ để xếp hạng.
 
 ### 2.3. Đề xuất lựa chọn công cụ tối ưu cho đề tài
 Từ bảng phân tích ma trận trên, nhóm quyết định lựa chọn **Visual Paradigm** làm công cụ chính để đi sâu nghiên cứu và xây dựng chuỗi kịch bản thực nghiệm, vì các lý do cốt lõi sau:
-1. **Phù hợp tuyệt đối với mục tiêu môn học Bảo trì phần mềm:** Visual Paradigm minh họa rõ nét toàn bộ chu trình kỹ thuật đảo ngược: từ việc nạp mã nguồn $\rightarrow$ trích xuất biểu đồ phân tích $\rightarrow$ điều chỉnh mô hình $\rightarrow$ đồng bộ Round-trip ngược lại mã nguồn.
+1. **Phù hợp với tác vụ thực nghiệm của môn học:** Visual Paradigm minh họa rõ nét toàn bộ chu trình kỹ thuật đảo ngược: từ việc nạp mã nguồn $\rightarrow$ trích xuất biểu đồ phân tích $\rightarrow$ điều chỉnh mô hình $\rightarrow$ đồng bộ Round-trip ngược lại mã nguồn.
 2. **Khả năng trực quan hóa xuất sắc:** Sơ đồ trích xuất có bố cục phân tầng mạch lạc, giúp sinh viên và giảng viên dễ dàng quan sát luồng dữ liệu của hệ thống Backend Java Spring Boot.
 3. **Tính năng Doc. Composer:** Cho phép tự động trích xuất toàn bộ đặc tả lớp, thuộc tính, phương thức ra tài liệu phục vụ bàn giao và lưu trữ trong bảo trì phần mềm.
 
@@ -162,8 +153,8 @@ Từ bảng phân tích ma trận trên, nhóm quyết định lựa chọn **Vi
 
 ## CHƯƠNG 3: TÌM HIỂU CHUYÊN SÂU CÁC TÍNH NĂNG CỦA CÔNG CỤ VISUAL PARADIGM
 
-### 3.1. Tổng quan giao diện và công nghệ cốt lõi
-Visual Paradigm hoạt động dựa trên cơ chế phân tích cú pháp mã nguồn (Source Code Parser) và cây cú pháp trừu tượng (Abstract Syntax Tree - AST). Khi lập trình viên chỉ định thư mục mã nguồn Java, công cụ sẽ:
+### 3.1. Tổng quan giao diện và mô hình lớp
+Visual Paradigm cung cấp chức năng phân tích mã nguồn để tạo mô hình lớp. Khi lập trình viên chỉ định thư mục mã nguồn Java, công cụ sẽ:
 1. Quét toàn bộ các tệp `.java` hoặc tệp nén `.jar`.
 2. Phân tích các định nghĩa `class`, `interface`, `enum`.
 3. Nhận dạng các mối quan hệ Hướng đối tượng: Kế thừa (Generalization), Hiện thực hóa (Realization), Kết tập (Aggregation), Hợp thành (Composition), và Phụ thuộc (Dependency).
@@ -178,17 +169,16 @@ Visual Paradigm hoạt động dựa trên cơ chế phân tích cú pháp mã n
   + `model` / `entity`: Lớp thực thể dữ liệu.
 - **Tùy chọn tạo biểu đồ:** Tùy chọn tự động vẽ mới Class Diagram hoặc thêm các phần tử vào một Diagram có sẵn để phân tích mối quan hệ.
 
-### 3.3. Tính năng trích xuất Entity-Relationship Diagram (ERD) từ JPA Entities
-Trong bảo trì cơ sở dữ liệu, việc hiểu đúng lược đồ quan hệ giữa các bảng là tối quan trọng:
-- Visual Paradigm có khả năng phân tích các JPA Annotations (`@Entity`, `@Table`, `@Id`, `@OneToMany`, `@ManyToOne`, `@JoinColumn`).
-- Từ đó tự động ánh xạ cấu trúc Object sang Relational Model (ORM), vẽ nên biểu đồ ERD với đầy đủ Khóa chính (PK), Khóa ngoại (FK) và tính số bội (Cardinality: 1-1, 1-n, n-n).
+### 3.3. Khoanh vùng Class Diagram phục vụ đọc hiểu mã
+
+Từ package `model`, tạo sơ đồ riêng cho Customer, Order, OrderItem, Product và BaseEntity. Đối chiếu association và kế thừa với mã Java, sau đó dùng sơ đồ tổng quan để truy vết phụ thuộc tới service/repository. Sơ đồ lớp thể hiện cấu trúc tĩnh, không tự bảo đảm phản ánh mọi tương tác runtime.
 
 ### 3.4. Tính năng Round-trip Engineering (Đồng bộ hai chiều)
 Một trong những nguyên nhân khiến tài liệu kiến trúc bị "lỗi thời" trong bảo trì là vì lập trình viên sửa code nhưng không sửa biểu đồ, hoặc kiến trúc sư sửa biểu đồ nhưng lập trình viên không cập nhật vào code.
-- Round-trip Engineering giải quyết triệt để vấn đề này:
+- Round-trip Engineering hỗ trợ giảm sai lệch giữa mô hình và mã nguồn:
   + **Reverse (Code $\rightarrow$ Model):** Trích xuất mã nguồn thực tế thành sơ đồ.
   + **Model Modification:** Kỹ sư tiến hành tái cấu trúc ngay trên sơ đồ trực quan (thêm trường dữ liệu, đổi kiểu dữ liệu, tách lớp).
-  + **Generate Code (Model $\rightarrow$ Code):** Visual Paradigm sinh ngược mã nguồn cập nhật vào dự án Java mà vẫn bảo toàn các đoạn code nghiệp vụ bên trong phương thức không bị ghi đè mất mát.
+  + **Generate Code (Model $\rightarrow$ Code):** Visual Paradigm sinh ngược mã nguồn cập nhật vào dự án Java; cần kiểm tra diff và build để xác nhận các đoạn logic cũ được giữ nguyên.
 
 ---
 
@@ -197,9 +187,9 @@ Một trong những nguyên nhân khiến tài liệu kiến trúc bị "lỗi t
 *(Xem chi tiết từng bước thao tác và hình ảnh tại tài liệu: docs/03_KICH_BAN_DEMO_CHI_TIET.md)*
 
 ### Tóm tắt 4 kịch bản thực nghiệm:
-- **Kịch bản 1:** Đảo ngược toàn bộ tầng nghiệp vụ của ứng dụng Spring Boot mẫu sang Class Diagram. Phân tích tính kết dính (Cohesion) và độ phụ thuộc (Coupling) giữa Controller và Service.
-- **Kịch bản 2:** Đảo ngược các JPA Entities (`Owner`, `Pet`, `Visit`) thành biểu đồ ERD vật lý, kiểm tra tính toàn vẹn quan hệ cha-con.
-- **Kịch bản 3:** Thực nghiệm quy trình bảo trì Hoàn thiện (Perfective Maintenance): Bổ sung thuộc tính `emergencyContact` vào thực thể và dùng Round-trip Engineering cập nhật tự động vào mã nguồn Java.
+- **Kịch bản 1:** Đảo ngược toàn bộ tầng nghiệp vụ của mã Java mô phỏng kiến trúc phân tầng sang Class Diagram. Phân tích tính kết dính (Cohesion) và độ phụ thuộc (Coupling) giữa Controller và Service.
+- **Kịch bản 2:** Tạo Class Diagram riêng cho package model, đối chiếu association và kế thừa với mã Java.
+- **Kịch bản 3:** Thực nghiệm quy trình bảo trì Hoàn thiện (Perfective Maintenance): Bổ sung thuộc tính `maintenanceNote` vào thực thể và dùng Round-trip Engineering cập nhật tự động vào mã nguồn Java.
 - **Kịch bản 4 (Module mở rộng AI Integration):** Sử dụng LLM kết hợp với sơ đồ đảo ngược để thực hiện **Change Impact Analysis (Phân tích tác động thay đổi)**: Khi thay đổi logic tính phí dịch vụ, AI sẽ tự động lập danh sách các class bị ảnh hưởng và sinh bộ test case kiểm thử hồi quy tương ứng.
 
 ---
@@ -208,12 +198,12 @@ Một trong những nguyên nhân khiến tài liệu kiến trúc bị "lỗi t
 
 ### 5.1. Kết quả đạt được
 - Nắm vững vai trò chiến lược của Kỹ thuật đảo ngược trong chu trình bảo trì phần mềm thực tế.
-- Khảo sát, so sánh định lượng 3 công cụ hàng đầu và chứng minh tính ưu việt của Visual Paradigm.
-- Xây dựng thành công chuỗi kịch bản thực nghiệm trên dự án Java Spring Boot thực tế.
+- Khảo sát, so sánh định tính ba công cụ và ghi nhận ưu thế của Visual Paradigm khi tạo Class Diagram trong lần thử của nhóm.
+- Xây dựng chuỗi kịch bản cần kiểm chứng bằng kết quả thực nghiệm trên mã mẫu quản lý đơn hàng.
 - Đề xuất mô hình kết hợp AI để nâng tầm kỹ thuật đảo ngược truyền thống sang tự động hóa phân tích tác động bảo trì.
 
 ### 5.2. Đánh giá ưu điểm và hạn chế
-- **Ưu điểm:** Khả năng trực quan hóa cao, tiết kiệm 70% thời gian đọc hiểu code cũ cho kỹ sư mới, hỗ trợ xuất báo cáo hoàn chỉnh.
+- **Ưu điểm:** Khả năng trực quan hóa cao, hỗ trợ đọc hiểu code cũ; chưa đo tỷ lệ tiết kiệm thời gian, hỗ trợ xuất báo cáo hoàn chỉnh.
 - **Hạn chế:** Các mối quan hệ lỏng thông qua Dependency Injection và Reflection của Spring Boot đôi khi cần cấu hình lọc thủ công để biểu đồ không bị rối mắt.
 
 ### 5.3. Hướng phát triển trong tương lai

@@ -32,7 +32,7 @@ gantt
     Cài đặt & dùng thử 3 công cụ (VP, EA, StarUML)    :des4, after des2, 5d
     Tổng hợp ma trận đánh giá & chọn Visual Paradigm  :des5, after des4, 2d
     section Giai đoạn 3: Thực nghiệm & Kịch bản
-    Chuẩn bị codebase Java Spring Boot mẫu (PetClinic):des6, after des5, 2d
+    Chuẩn bị codebase Java Spring Boot mẫu (quản lý đơn hàng):des6, after des5, 2d
     Thực hiện 4 kịch bản đảo ngược trên Visual Paradigm:des7, after des6, 4d
     Mở rộng kịch bản AI-Augmented Impact Analysis    :des8, after des7, 3d
     section Giai đoạn 4: Hoàn thiện & Báo cáo
@@ -47,18 +47,18 @@ gantt
 - **Mục tiêu:** Nắm vững cơ sở lý thuyết môn Bảo trì phần mềm về Kỹ thuật đảo ngược; cài đặt thành công 3 công cụ trên máy của các thành viên.
 - **Sản phẩm bàn giao:** 
   + Bản nháp Mục 1 (Cơ sở lý thuyết Reverse Engineering trong Bảo trì phần mềm).
-  + Báo cáo ghi nhận bước đầu khi dùng thử Visual Paradigm Community Edition, Enterprise Architect (Trial), và StarUML (Java Extension).
+  + Báo cáo ghi nhận bước đầu khi dùng thử Visual Paradigm Enterprise Evaluation, Enterprise Architect (Trial), và StarUML (Java Extension).
 
 #### Tuần 2: Đánh giá so sánh 3 công cụ & Chuẩn bị môi trường thực nghiệm
 - **Mục tiêu:** Xây dựng ma trận so sánh đa tiêu chí, bảo vệ lý do chọn Visual Paradigm; chuẩn bị dự án mã nguồn mở Java Spring Boot.
 - **Sản phẩm bàn giao:**
   + Bảng ma trận so sánh 3 công cụ có minh chứng thực tế.
-  + Kho mã nguồn Spring Boot mẫu (Spring PetClinic / Mini E-Commerce) đã build và chạy thử thành công.
+  + Kho mã nguồn Spring Boot mẫu (Spring quản lý đơn hàng / Mini E-Commerce) đã build và chạy thử thành công.
 
 #### Tuần 3: Xây dựng chuỗi kịch bản demo và Phân tích chuyên sâu
 - **Mục tiêu:** Thực hiện trọn vẹn 4 kịch bản thao tác trên Visual Paradigm:
   1. Reverse Java Code sang Class Diagram (phân tầng MVC).
-  2. Reverse JPA Entity sang Entity-Relationship Diagram (ERD).
+  2. Khoanh vùng Class Diagram của package model và đối chiếu quan hệ lớp.
   3. Round-trip Engineering: Sửa đổi trên mô hình và đồng bộ ngược về mã nguồn Java.
   4. Phân tích tác động bảo trì kết hợp AI (AI-Augmented Impact Analysis).
 - **Sản phẩm bàn giao:** Bộ ảnh chụp màn hình chất lượng cao + video ghi lại quá trình demo từng bước.
@@ -97,6 +97,6 @@ gantt
 | Rủi ro tiềm ẩn | Mức độ | Phương án phòng ngừa / Xử lý |
 |:---|:---:|:---|
 | Visual Paradigm bị lỗi bộ nhớ khi import project Java quá lớn | Trung bình | Chỉ chọn lọc import các package nghiệp vụ cốt lõi (`controller`, `service`, `model`, `repository`), loại bỏ các file cấu hình hoặc thư viện ngoài. |
-| Bản quyền phần mềm (License) | Thấp | Dùng bản **Visual Paradigm Community Edition** (miễn phí trọn đời cho mục đích học tập) hoặc đăng ký Academic License. |
+| Bản quyền phần mềm (License) | Trung bình | Dùng Enterprise Evaluation trong thời hạn hoặc license học thuật phù hợp; Community không thay thế Java round-trip. |
 | Máy chiếu trên lớp không tương thích khi demo trực tiếp | Trung bình | Quay sẵn video màn hình chất lượng cao (1080p) làm backup bên cạnh phương án demo live. |
 | Giảng viên hỏi sâu về sự khác biệt giữa Reverse Engineering và Decompiler | Cao | Đã chuẩn bị sẵn bảng phân biệt rõ ràng: Decompiler là dịch ngược mức máy/bytecode sang mã nguồn thô; Reverse Engineering là trích xuất mức trừu tượng cao hơn (thiết kế, kiến trúc, quan hệ lớp) để phục vụ hiểu và bảo trì. |

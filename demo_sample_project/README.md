@@ -1,6 +1,18 @@
 # DỰ ÁN MẪU JAVA SPRING BOOT PHỤC VỤ THỰC NGHIỆM REVERSE ENGINEERING
 
-Thư mục này chứa sẵn một bộ mã nguồn Java Backend tiêu chuẩn theo kiến trúc phân tầng (Layered Architecture: Controller - Service - Repository - Entity) để nhóm có thể **mở Visual Paradigm và thực hành Kỹ thuật đảo ngược ngay lập tức** mà không cần mất thời gian cài đặt cơ sở dữ liệu hay tải thư viện nặng.
+Thư mục này chứa mã Java mô phỏng kiến trúc phân tầng Controller - Service - Repository - Entity để thử nghiệm reverse engineering trên ba công cụ. Các entity đã có annotation Jakarta Persistence (JPA); controller, service và repository vẫn là Java thuần, chưa phải ứng dụng Spring Boot chạy được.
+
+## Chuẩn bị chạy lại phép thử
+
+- Import lại cùng thư mục `src/main/java` vào cả ba công cụ, ưu tiên project mới để tránh trộn mô hình cũ và mới.
+- `Customer`, `Order`, `OrderItem`, `Product` có `@Entity` và `@Table`; `BaseEntity` có `@MappedSuperclass`, `@Id` và ID tự sinh. `BaseEntity` không có bảng riêng.
+- Các khóa ngoại kỳ vọng: `orders.customer_id → customers.id`, `order_items.order_id → orders.id`, `order_items.product_id → products.id`.
+- `Customer.orders` và `Order.items` là phía `mappedBy`; kiểm tra công cụ có đọc đúng phía sở hữu quan hệ hay chỉ nhận diện kiểu field Java.
+- Tên entity JPA của lớp `Order` là `CustomerOrder` để tránh từ khóa truy vấn `ORDER`; tên bảng là `orders`.
+- Build với JDK 17 trở lên và Maven: `mvn -f demo_sample_project/pom.xml compile` (chạy từ thư mục gốc). Maven tải dependency JPA ở lần đầu.
+- POM cung cấp API để biên dịch annotation, chưa cấu hình persistence provider hay kết nối CSDL. Build thành công chưa chứng minh công cụ UML chuyển JPA sang ERD đúng.
+
+Chụp lại cấu hình import, phiên bản công cụ/extension, sơ đồ và các PK/FK thực sự được tạo trước khi cập nhật bảng đánh giá trong `docs`.
 
 ---
 

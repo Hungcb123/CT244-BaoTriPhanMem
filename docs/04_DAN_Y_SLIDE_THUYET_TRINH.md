@@ -1,132 +1,128 @@
-# DÀN Ý SLIDE THUYẾT TRÌNH BÁO CÁO TRƯỚC LỚP (POWERPOINT)
-## BÀI TẬP NHÓM SỐ 1: BẢO TRÌ PHẦN MỀM (CT210H)
-**Chủ đề:** Ứng dụng Kỹ thuật đảo ngược (Reverse Engineering) với Visual Paradigm trong bảo trì hệ thống Java Spring Boot  
-**Thời lượng dự kiến:** 12 - 15 phút (bao gồm Live Demo) + 5 phút Q&A  
+# DÀN Ý SLIDE CT210H — THUYẾT TRÌNH 5 PHÚT
 
----
+## Brief gửi người làm slide
 
-## Cấu trúc tổng thể của Slide Deck
+Làm **6 slide**, tổng phần nói dự kiến **4 phút 40 giây**, còn 20 giây dự phòng chuyển slide. Chủ đề: **Khảo sát công cụ reverse engineering Java và lựa chọn Visual Paradigm**. Không dùng dàn ý 12–15 phút trước đây.
 
-| Slide # | Tiêu đề Slide | Thời lượng | Người trình bày (gợi ý) |
-|:---:|:---|:---:|:---:|
-| 1 | Trang bìa & Giới thiệu đề tài | 1 phút | Nhóm trưởng |
-| 2 | Đặt vấn đề: Thách thức bảo trì hệ thống Legacy | 1 phút | Nhóm trưởng |
-| 3 | Khái niệm & Vai trò của Reverse Engineering trong Bảo trì | 1.5 phút | Thành viên 2 |
-| 4 | Khảo sát 3 công cụ: Visual Paradigm, EA, StarUML | 1.5 phút | Thành viên 2 |
-| 5 | Ma trận đánh giá so sánh & Lý do chọn Visual Paradigm | 1 phút | Thành viên 2 |
-| 6 | Các tính năng nổi bật của Visual Paradigm | 1.5 phút | Nhóm trưởng |
-| 7 | Giới thiệu hệ thống thực nghiệm: Spring Boot Backend | 1 phút | Thành viên 3 |
-| 8 | Kịch bản 1: Instant Reverse Controller - Service - Repo | 1.5 phút | Live Demo / Video |
-| 9 | Kịch bản 2: Trích xuất ERD từ JPA Entities | 1.5 phút | Live Demo / Video |
-| 10 | Kịch bản 3: Round-trip Engineering (Model $\leftrightarrow$ Code) | 1.5 phút | Live Demo / Video |
-| 11 | Kịch bản 4: Điểm nhấn mở rộng - AI-Augmented Impact Analysis | 1.5 phút | Nhóm trưởng |
-| 12 | Đánh giá ưu nhược điểm & Bài học kinh nghiệm | 1 phút | Thành viên 3 |
-| 13 | Kết luận, Hướng phát triển & Lời cảm ơn | 1 phút | Nhóm trưởng |
-| 14+ | Phụ lục (Backup Screenshots khi demo) | Dự phòng | Cả nhóm |
+Trọng tâm là kết quả thử ba công cụ trên cùng mã Java và lý do lựa chọn. Không demo live trong 5 phút; dùng ảnh đã có. Không đưa round-trip hoặc AI thành kết quả đã thực hiện. Không thêm bảng điểm/radar định lượng chưa được kiểm chứng.
 
----
+Mỗi slide một thông điệp chính, tối đa ba ý ngắn, chữ nội dung từ khoảng 24pt. Ưu tiên vùng ảnh có tên class, quan hệ và Browser/Model Explorer; cắt phần trống, giữ nguyên nội dung minh chứng. Có thể dùng ảnh tổng quan và một vùng phóng to thay vì thu nhỏ toàn bộ ảnh đến mức không đọc được.
 
-## Chi tiết nội dung và Lời thoại từng Slide (Speaker Notes)
+## Phân bổ thời lượng
 
-### SLIDE 1: TRANG TIÊU ĐỀ
-- **Tiêu đề lớn:** NGHIÊN CỨU VÀ ỨNG DỤNG CÔNG CỤ KỸ THUẬT ĐẢO NGƯỢC (REVERSE ENGINEERING) TRONG BẢO TRÌ PHẦN MỀM
-- **Phụ đề:** Thực nghiệm trên hệ thống Java Spring Boot với công cụ Visual Paradigm & Mở rộng phân tích tác động bằng AI
-- **Thông tin:** Môn học: Bảo trì phần mềm (CT210H) - Giảng viên hướng dẫn: [Tên Thầy/Cô] - Nhóm thực hiện: [Tên nhóm & Thành viên].
-- 🗣️ **Speaker Note (Lời thoại mở đầu):**  
-  *"Kính chào Thầy/Cô và các bạn. Hôm nay nhóm em xin phép đại diện trình bày bài tập nhóm số 1 với chủ đề: Khảo sát và ứng dụng công cụ Kỹ thuật đảo ngược trong bảo trì phần mềm..."*
+| Slide | Nội dung | Thời lượng |
+|---|---|---|
+| 1 | Chủ đề và mục tiêu | 15 giây |
+| 2 | Reverse engineering giúp gì cho bảo trì? | 35 giây |
+| 3 | Cách thử nghiệm ba công cụ | 35 giây |
+| 4 | Kết quả EA và StarUML | 65 giây |
+| 5 | Kết quả Visual Paradigm và so sánh | 100 giây |
+| 6 | Kết luận và giới hạn | 30 giây |
+| **Tổng phần nói** | | **280 giây = 4 phút 40 giây** |
 
----
+Nếu 5 phút bao gồm hỏi đáp, rút phần trình bày xuống khoảng 4 phút: giảm slide 4 còn 50 giây, slide 5 còn 75 giây. Không đưa thêm lý thuyết hoặc demo live.
 
-### SLIDE 2: ĐẶT VẤN ĐỀ - CƠN ÁC MỘNG CỦA KỸ SƯ BẢO TRÌ BACKEND
-- **Nội dung hiển thị:**
-  + Chi phí bảo trì chiếm 60 - 80% ngân sách vòng đời phần mềm.
-  + Hơn 50% thời gian của kỹ sư bị tiêu tốn vào việc **"Đọc hiểu mã nguồn" (Program Comprehension)**.
-  + Thực trạng hệ thống doanh nghiệp (Java Spring Boot): Dự án qua nhiều thế hệ developer, tài liệu thiết kế (UML, ERD) bị thất lạc hoặc lỗi thời so với mã nguồn thực tế.
-- 🗣️ **Speaker Note:**  
-  *"Khi một kỹ sư mới bước vào một dự án Spring Boot hàng trăm ngàn dòng code, không ai có thể đọc từng file `.java` để vẽ lại kiến trúc. Nếu sửa đại, nguy cơ phá vỡ hệ thống là cực kỳ cao. Đó là lý do chúng ta cần đến Kỹ thuật đảo ngược."*
+## Slide 1 — Chủ đề và mục tiêu (15 giây)
 
----
+**Trên slide:**
 
-### SLIDE 3: BẢN CHẤT CỦA REVERSE ENGINEERING TRONG BẢO TRÌ
-- **Nội dung hiển thị:**
-  + **Định nghĩa (Chikofsky & Cross):** Quá trình phân tích hệ thống mã nguồn có sẵn để trích xuất ra các biểu diễn ở mức trừu tượng cao hơn (Kiến trúc, UML, ERD).
-  + **Phân biệt ranh giới:**
-    - Không phải Decompiler (Decompiler chỉ dịch từ mã máy ra mã nguồn thô).
-    - Ngược chiều với Forward Engineering (Thiết kế $\rightarrow$ Code).
-  + Đóng góp vào 4 hình thái bảo trì: Sửa lỗi (Corrective), Thích nghi (Adaptive), Hoàn thiện (Perfective), Phòng ngừa (Preventive - Refactoring).
+- Khảo sát công cụ Reverse Engineering Java.
+- Visual Paradigm · Enterprise Architect · StarUML.
+- CT210H — tên nhóm, thành viên theo thông tin thực tế.
 
----
+**Lời nói gợi ý:**
 
-### SLIDE 4: KHẢO SÁT 3 CÔNG CỤ REVERSE ENGINEERING TIÊU BIỂU
-- **Nội dung hiển thị (3 cột so sánh khách quan ưu & nhược điểm):**
-  1. **Visual Paradigm:** Chuyên gia CASE Tool chuẩn giáo trình bảo trì, tự động phân tầng 1-Click, Round-trip và trích xuất JPA sang ERD xuất sắc. *(Nhược điểm: Rất nặng nề, chạy Java Swing ngốn RAM, giao diện rườm rà)*.
-  2. **Enterprise Architect (Sparx):** "Ông vua" mô hình hóa cấp tập đoàn, vô địch về quản lý truy vết (Traceability) và quy mô triệu dòng code. *(Nhược điểm: Giao diện cực khó học, chia vụn diagram, khóa cứng file sau 30 ngày trial)*.
-  3. **StarUML (kèm Java Extension):** Vô địch về tốc độ và trải nghiệm (siêu nhẹ ~100MB, giao diện phẳng hiện đại, trial không khóa file). *(Nhược điểm: Tự động hóa thấp, phải kéo thả thủ công 100%, không trích xuất JPA sang ERD)*.
+“Nhóm khảo sát ba công cụ chuyển mã Java thành sơ đồ lớp, so sánh khả năng tự động hóa và công sức thao tác, từ đó chọn công cụ phù hợp để hỗ trợ bảo trì.”
 
----
+## Slide 2 — Vì sao cần reverse engineering? (35 giây)
 
-### SLIDE 5: BIỂU ĐỒ SPIDER CHART ĐÁNH GIÁ ĐA CHIỀU & LUẬN CHỨNG
-- **Nội dung hiển thị:** 
-  + Chiếu hình ảnh **Biểu đồ Radar (Spider Chart) 6 trục** khách quan: Mỗi công cụ có một thế mạnh riêng (StarUML dẫn đầu về Hiệu năng & UI; EA dẫn đầu về Enterprise; Visual Paradigm dẫn đầu về Tự động hóa Đảo ngược & Round-trip).
-  + Bảng ma trận trọng số: Visual Paradigm (3.75) $\gt$ Enterprise Architect (3.40) $\gt$ StarUML (3.10).
-- **Kết luận đề xuất (Khách quan, không thiên vị):** 
-  * Không có công cụ nào hoàn hảo toàn diện. 
-  * Nhóm chọn **Visual Paradigm** vì đây là **công cụ phù hợp nhất với bài toán cụ thể của môn Bảo trì phần mềm**: Tiết kiệm tối đa thời gian vẽ lại kiến trúc Controller-Service-Repo và đồng bộ hai chiều mã nguồn Java Spring Boot.
+**Trên slide:**
 
----
+- Tiếp nhận code cũ nhưng thiếu sơ đồ thiết kế.
+- Java source → Class Diagram → hiểu quan hệ lớp.
+- Hỗ trợ xác định phần liên quan trước khi thay đổi.
 
-### SLIDE 6: CÁC TÍNH NĂNG NÒNG CỐT CỦA VISUAL PARADIGM
-- **Nội dung hiển thị (Icon + Mô tả ngắn):**
-  + 🔄 **Instant Reverse Java:** Quét mã nguồn `.java` và `.jar`, nhận diện cấu trúc phân lớp trong tích tắc.
-  + 🗄️ **ORM / JPA to ERD:** Tự động chuyển đổi các Entity chú thích JPA sang biểu đồ quan hệ thực thể cơ sở dữ liệu.
-  + 🔁 **Round-trip Synchronization:** Sửa mô hình $\rightarrow$ cập nhật mã nguồn tự động mà không mất logic code cũ.
-  + 📄 **Doc. Composer:** Tự động sinh tài liệu kiến trúc kỹ thuật bàn giao dạng Word/PDF/HTML.
+**Hình gợi ý:** Một luồng ba bước đơn giản; không cần thêm ảnh sản phẩm.
 
----
+**Lời nói gợi ý:**
 
-### SLIDE 7: DỰ ÁN THỰC NGHIỆM - BACKEND SPRING BOOT
-- **Nội dung hiển thị:**
-  + Sử dụng kiến trúc Spring Boot tiêu chuẩn: Controller, Service, Repository, JPA Entity.
-  + Đối tượng kiểm thử: Các module quản lý thực thể nghiệp vụ (`Owner`, `Pet`, `Visit`).
+“Khi tiếp nhận một hệ thống, kỹ sư cần hiểu lớp nào phụ thuộc lớp nào trước khi sửa. Reverse engineering giúp khôi phục mô hình từ mã đã có. Trong bài này, nhóm dùng Class Diagram để quan sát thuộc tính, phương thức, quan hệ kế thừa và liên kết giữa các lớp. Sơ đồ hỗ trợ đọc hiểu mã, nhưng vẫn phải đối chiếu với source khi phân tích thay đổi.”
 
----
+## Slide 3 — Thử trên cùng một mã nguồn (35 giây)
 
-### SLIDE 8 $\rightarrow$ SLIDE 10: CHUỖI KỊCH BẢN MINH HỌA (KÈM DEMO TRỰC TIẾP)
-*(Chiếu slide tóm tắt kịch bản rồi chuyển sang màn hình Demo live hoặc chiếu video minh họa)*
-- **Kịch bản 1 (Slide 8):** Đảo ngược mã nguồn thành Class Diagram phân tầng MVC. (Thấy rõ quan hệ Controller gọi Service/Repo).
-- **Kịch bản 2 (Slide 9):** Trích xuất ERD từ JPA Entities. (Xác định các ràng buộc khóa ngoại 1-N).
-- **Kịch bản 3 (Slide 10):** Round-trip Engineering: Thêm trường dữ liệu trên Visual Paradigm $\rightarrow$ Mã nguồn Java tự động sinh thuộc tính và Getter/Setter.
+**Trên slide:**
 
----
+- Mã mẫu quản lý đơn hàng: 12 class/interface.
+- Controller · Service · Repository · Model.
+- So sánh: quan hệ lớp, tự tạo sơ đồ, thao tác thủ công.
 
-### SLIDE 11: ĐIỂM NHẤN SÁNG TẠO - AI-AUGMENTED IMPACT ANALYSIS
-- **Nội dung hiển thị:**
-  + Mô hình kết hợp: **Visual Paradigm (Trích xuất sơ đồ cấu trúc)** $\rightarrow$ **AI Agent (Phân tích rủi ro bảo trì)**.
-  + Khi nhận một yêu cầu thay đổi tính năng backend: AI phân tích sơ đồ lớp và chỉ ra chính xác các module bị ảnh hưởng (Direct/Indirect impact), ma trận rủi ro và các bộ Unit Test cần viết bổ sung.
-- 🗣️ **Speaker Note:**  
-  *"Kỹ thuật đảo ngược truyền thống giúp con người nhìn thấy cấu trúc. Nhưng khi kết hợp với AI, chúng ta nâng cấp lên mức Đánh giá rủi ro và Đề xuất kế hoạch bảo trì tự động."*
+**Hình gợi ý:** Bốn khối tên package. Ghi nhỏ đường dẫn `demo_sample_project/src/main/java` nếu cần.
 
----
+**Lời nói gợi ý:**
 
-### SLIDE 12: ĐÁNH GIÁ ƯU NHƯỢC ĐIỂM & BÀI HỌC KINH NGHIỆM
-- **Ưu điểm:** Tiết kiệm đáng kể thời gian đọc hiểu mã nguồn; tài liệu hóa kiến trúc luôn đồng bộ với mã nguồn; kiểm soát tốt cấu trúc phân tầng.
-- **Hạn chế:** Cần lọc thủ công các lớp cấu hình phụ trợ của Spring Boot để sơ đồ không bị quá tải thông tin.
-- **Bài học nhóm tích lũy được:** Nắm vững quy trình bảo trì phần mềm chuyên nghiệp; kỹ năng sử dụng CASE tools trong dự án doanh nghiệp.
+“Cả ba công cụ được thử trên cùng mã Java quản lý đơn hàng gồm 12 class và interface, chia thành bốn package. Đây là mã mô phỏng kiến trúc phân tầng, chưa phải ứng dụng Spring Boot chạy hoàn chỉnh. Nhóm xem công cụ tạo được những class, quan hệ nào, và cần bao nhiêu công sức gom, kéo thả hoặc chỉnh sơ đồ để có tổng quan dễ đọc.”
 
----
+## Slide 4 — EA và StarUML: kết quả và công sức thao tác (65 giây)
 
-### SLIDE 13: KẾT LUẬN & HƯỚNG PHÁT TRIỂN
-- **Kết luận:** Hoàn thành toàn diện các yêu cầu bài tập nhóm số 1 của môn học; minh chứng công cụ qua kịch bản thực tiễn.
-- **Hướng phát triển:** Tích hợp công cụ Reverse Engineering vào pipeline CI/CD để tự động kiểm tra vi phạm kiến trúc mỗi khi developer push code.
-- **Cảm ơn & Q&A:** Mời Thầy/Cô và các bạn đặt câu hỏi.
+**Trên slide:** Dùng hai cột, mỗi cột một ảnh và hai dòng nhận xét.
 
----
+| Enterprise Architect | StarUML + Java extension |
+|---|---|
+| Có diagram theo package và quan hệ lớp | Có overview/hierarchy qua extension |
+| Quy trình gom tổng quan đang thử cần chọn, kéo class và thêm phần tử liên quan | Lần thử của nhóm cần nhiều thao tác kéo thả, gom class và chỉnh bố cục |
 
-## BỘ CÂU HỎI PHẢN BIỆN DỰ KIẾN CỦA GIẢNG VIÊN VÀ CÁCH TRẢ LỜI
+**Ảnh:**
 
-1. **Câu hỏi:** *Visual Paradigm đảo ngược từ file `.java` hay file `.class`? Khác nhau thế nào?*
-   - **Trả lời:** Visual Paradigm hỗ trợ cả hai. Đảo ngược từ `.java` lấy được đầy đủ tên tham số và comment mã nguồn. Đảo ngược từ `.class` (bytecode) rất hữu ích khi hệ thống chỉ còn các file `.jar` đóng gói của bên thứ ba mà không có source code.
-2. **Câu hỏi:** *Làm thế nào để tránh biểu đồ bị rối (spaghetti diagram) khi import cả dự án Spring Boot lớn?*
-   - **Trả lời:** Thay vì import toàn bộ project một lúc, nhóm sử dụng chiến lược khoanh vùng: phân chia theo từng package nghiệp vụ cụ thể (Bounded Context) hoặc lọc chỉ hiển thị các class liên quan đến một Use Case nhất định.
-3. **Câu hỏi:** *Round-trip engineering có làm mất code xử lý nghiệp vụ bên trong các hàm không?*
-   - **Trả lời:** Dạ không, Visual Paradigm sử dụng cơ chế AST merge: công cụ chỉ bổ sung hoặc cập nhật chữ ký phương thức (signature) và trường dữ liệu, toàn bộ thân hàm (method body) cũ được bảo toàn nguyên vẹn.
+- `docs/Anh_EnterpriseArchitect/1.jpg`: sơ đồ model.
+- `docs/Anh_EnterpriseArchitect/2.jpg`: dùng khi muốn minh họa tổng quan thay ảnh trên.
+- `docs/Anh_StarUML/1.jpg`: sơ đồ model và Model Explorer.
+- `docs/Anh_StarUML/2.jpg`: có thể dùng làm vùng phụ minh họa các phần còn rời nhau.
+
+Không đặt cả bốn ảnh nhỏ trên cùng một slide. Chọn một ảnh mỗi công cụ, phóng phần cần nói.
+
+**Lời nói gợi ý:**
+
+“EA đã tạo được sơ đồ theo package và có quan hệ giữa các entity, gồm association và kế thừa. Khi gom sơ đồ tổng quan, quy trình nhóm đang thử cần tìm đúng class trong Browser, kéo vào diagram rồi dùng Insert Related Elements. Việc phân biệt class và diagram cũng làm phát sinh thao tác làm lại. Với StarUML, Java extension có tùy chọn tạo sơ đồ, nhưng để có tổng quan mong muốn, nhóm vẫn phải kéo thả và chỉnh nhiều. Vì vậy, nhóm đánh giá cả công sức hoàn thành tác vụ, không chỉ giao diện đẹp hoặc việc import thành công.”
+
+## Slide 5 — Vì sao chọn Visual Paradigm? (100 giây)
+
+**Trên slide:**
+
+- Chọn package → tạo Class Diagram, ít phải kéo từng class.
+- Có sơ đồ tổng quan và sơ đồ riêng cho package model.
+- Người thực nghiệm đánh giá thuận tiện, dễ sử dụng nhất trong tác vụ đã thử.
+
+**Bố cục:** Ảnh tổng quan chiếm phần lớn slide; thêm một vùng phóng to quan hệ entity hoặc ba nhãn nhận xét. Không chèn radar điểm số.
+
+**Ảnh:**
+
+- Tổng quan: `docs/Anh_VisualPara/1793196676310_1784582928794907455_6260660485963750169_897aa58491780a8a80385b044e8bb517.jpg`.
+- Sơ đồ model riêng: `docs/Anh_VisualPara/1793203029897_1784582928794907455_6260660485963750169_8498bb5ef4dd8c4ebe2f84aba51e5261.jpg`.
+- Ảnh model còn lại có thể để dự phòng: `docs/Anh_VisualPara/1793196698604_1784582928794907455_6260660485963750169_01af1741e03f20fc4dfe532fa32351ec.jpg`.
+
+**Lời nói gợi ý:**
+
+“Với Visual Paradigm, nhóm chọn package rồi tạo Class Diagram mà không cần kéo từng class lên trang. Ảnh tổng quan cho thấy các package Controller, Service, Repository và Model cùng những quan hệ được hiển thị. Khi muốn tập trung vào entity, nhóm chọn riêng package model để tạo một sơ đồ dễ quan sát hơn. Trên hình, bốn lớp Customer, Order, OrderItem và Product kế thừa BaseEntity; giữa các lớp cũng có association. Khi xem sơ đồ tổng quan, nhóm có thể theo dõi OrderService và các repository liên quan để chuẩn bị phân tích một thay đổi nghiệp vụ. Điểm nhóm đánh giá cao là giảm công sức gom phần tử và dễ tạo đúng sơ đồ cần dùng. Đây là lý do chọn VP trong lần thực nghiệm này; không phải khẳng định EA và StarUML không có chức năng tự động.”
+
+Thời lượng gồm khoảng 20–25 giây chỉ vào các quan hệ trên ảnh. Không đọc hết thuộc tính và phương thức.
+
+## Slide 6 — Kết luận và giới hạn (30 giây)
+
+**Trên slide:**
+
+- Chọn **Visual Paradigm** cho tác vụ reverse Java → Class Diagram.
+- Căn cứ: tự động hóa và dễ sử dụng trong thực nghiệm.
+- Giới hạn: chưa đo hiệu năng; round-trip là hướng kiểm chứng tiếp theo.
+
+**Lời nói gợi ý:**
+
+“Nhóm chọn Visual Paradigm vì quy trình tạo Class Diagram thuận tiện và giảm thao tác thủ công trong bài thử. Kết luận giới hạn ở mã mẫu và các thao tác đã thực hiện; nhóm chưa đo hiệu năng hay xác nhận round-trip an toàn. Qua thực nghiệm, nhóm thấy sơ đồ lớp hữu ích để đọc hiểu cấu trúc và chuẩn bị bảo trì. Xin cảm ơn thầy cô và các bạn.”
+
+## Ghi chú bàn giao và diễn tập
+
+- Nguồn nhận xét: `docs/05_DANH_GIA_VA_LUA_CHON_CONG_CU.md`.
+- Người làm slide cần điền tên nhóm, MSSV và giảng viên từ thông tin thật; không tự điền.
+- Kiểm tra ảnh tổng quan VP đúng nội dung trước khi đặt; nếu tên ảnh không thuận tiện có thể sao chép với tên dễ nhớ, giữ bản gốc.
+- Chỉ nêu kết quả ảnh chứng minh và trải nghiệm người thực nghiệm. Không ghi “100% chính xác”, tỷ lệ thời gian tiết kiệm hay “chỉ vẽ tay” cho EA/StarUML.
+- Bấm giờ diễn tập một lượt; nếu quá giờ, cắt chi tiết thao tác EA, giữ phần minh chứng và lý do chọn VP.
+- Đây là dàn ý và lời thoại để dựng slide, chưa phải file PowerPoint đã hoàn thành.

@@ -1,14 +1,23 @@
 package com.maintenance.demo.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
 import java.math.BigDecimal;
 
 /**
  * Thực thể Sản phẩm trong danh mục.
  */
+@Entity
+@Table(name = "products")
 public class Product extends BaseEntity {
+    @Column(name = "product_code", unique = true)
     private String productCode;
     private String name;
+    @Column(precision = 19, scale = 2)
     private BigDecimal price;
+    @Column(name = "stock_quantity")
     private Integer stockQuantity;
     private String description;
 
